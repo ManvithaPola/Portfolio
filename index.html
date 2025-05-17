@@ -87,50 +87,6 @@
   </div>
 </nav>
 
-<!-- JavaScript for Mobile Menu Toggle -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    mobileMenuButton.addEventListener('click', function() {
-      mobileMenu.classList.toggle('hidden');
-    });
-    
-    // Close mobile menu when clicking on a link
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        mobileMenu.classList.add('hidden');
-      });
-    });
-    
-    // Dark mode toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', function() {
-      document.documentElement.classList.toggle('dark');
-      if (document.documentElement.classList.contains('dark')) {
-        themeToggle.textContent = '☀️';
-        localStorage.theme = 'dark';
-      } else {
-        themeToggle.textContent = '🌙';
-        localStorage.theme = 'light';
-      }
-    });
-    
-    // Check initial theme from localStorage
-    if (localStorage.theme === 'dark' || 
-        (!('theme' in localStorage) && 
-         window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-      themeToggle.textContent = '☀️';
-    } else {
-      document.documentElement.classList.remove('dark');
-      themeToggle.textContent = '🌙';
-    }
-  });
-</script>
-
     <!-- Hero Section -->
 <section id="hero" class="pt-28 pb-20 px-4 md:px-10 bg-white dark:bg-darkBg transition-colors duration-300">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
@@ -564,10 +520,46 @@
 
 
     <script>
-      const toggleBtn = document.getElementById('theme-toggle');
-      toggleBtn.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.add('hidden');
       });
-    </script>
+    });
+    
+    // Dark mode toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', function() {
+      document.documentElement.classList.toggle('dark');
+      if (document.documentElement.classList.contains('dark')) {
+        themeToggle.textContent = '☀️';
+        localStorage.theme = 'dark';
+      } else {
+        themeToggle.textContent = '🌙';
+        localStorage.theme = 'light';
+      }
+    });
+    
+    // Check initial theme from localStorage
+    if (localStorage.theme === 'dark' || 
+        (!('theme' in localStorage) && 
+         window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      themeToggle.textContent = '☀️';
+    } else {
+      document.documentElement.classList.remove('dark');
+      themeToggle.textContent = '🌙';
+    }
+  });
+</script>
   </body>
 </html>
