@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manvitha | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#a855f7', // fuchsia-500
+              accent: '#8b5cf6',  // violet-500
+              darkBg: '#0f172a',  // slate-950
+            }
+          }
+        }
+      };
+    </script>
+  </head>
+  <body class="bg-white text-gray-900 dark:bg-darkBg dark:text-white transition-colors duration-300">
+    
+    <!-- Navbar -->
+<nav class="w-full fixed top-0 z-50 shadow-md bg-white dark:bg-darkBg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex-shrink-0 text-2xl font-bold text-primary">
+        Manvitha
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex space-x-4 lg:space-x-8 font-medium">
+        <a href="#hero" class="hover:text-primary transition">Home</a>
+        <a href="#about" class="hover:text-primary transition">About</a>
+        <a href="#skills" class="hover:text-primary transition">Skills</a>
+        <a href="#projects" class="hover:text-primary transition">Projects</a>
+        <a href="#internship" class="hover:text-primary transition">Internship</a>
+        <a href="#certifications" class="hover:text-primary transition">Certifications</a>
+        <a href="#publications" class="hover:text-primary transition">Publications</a>
+        <a href="#contact" class="hover:text-primary transition">Contact</a>
+      </div>
+
+      <div class="flex items-center">
+        <!-- Dark Mode Toggle -->
+        <button
+          id="theme-toggle"
+          class="ml-4 text-xl text-gray-700 dark:text-gray-300 hover:text-primary"
+          aria-label="Toggle dark mode"
+        >
+          🌙
+        </button>
+        
+        <!-- Mobile menu button -->
+        <button 
+          type="button" 
+          class="md:hidden ml-4 text-gray-700 dark:text-gray-300 hover:text-primary"
+          id="mobile-menu-button"
+          aria-label="Open mobile menu"
+        >
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile Navigation -->
+  <div class="md:hidden hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-darkBg">
+      <a href="#hero" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition">Home</a>
+      <a href="#about" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition">About</a>
+      <a href="#skills" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition">Skills</a>
+      <a href="#projects" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition">Projects</a>
+      <a href="#internship" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition">Internship</a>
+      <a href="#certifications" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition">Certifications</a>
+      <a href="#publications" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition">Publications</a>
+      <a href="#contact" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary transition">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- JavaScript for Mobile Menu Toggle -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+    
+    // Dark mode toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', function() {
+      document.documentElement.classList.toggle('dark');
+      if (document.documentElement.classList.contains('dark')) {
+        themeToggle.textContent = '☀️';
+        localStorage.theme = 'dark';
+      } else {
+        themeToggle.textContent = '🌙';
+        localStorage.theme = 'light';
+      }
+    });
+    
+    // Check initial theme from localStorage
+    if (localStorage.theme === 'dark' || 
+        (!('theme' in localStorage) && 
+         window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      themeToggle.textContent = '☀️';
+    } else {
+      document.documentElement.classList.remove('dark');
+      themeToggle.textContent = '🌙';
+    }
+  });
+</script>
+
+    <!-- Hero Section -->
+<section id="hero" class="pt-28 pb-20 px-4 md:px-10 bg-white dark:bg-darkBg transition-colors duration-300">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
+    
+    <!-- Left: Text Content -->
+    <div class="flex-1 text-center md:text-left space-y-6">
+      <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+        Hi, I'm <span class="text-primary">Manvitha Pola</span>
+      </h1>
+      <p class="text-lg md:text-xl font-medium">
+        AI/ML Enthusiast • Web Developer <br />
+        3rd Year B.Tech @ SNIST
+      </p>
+    <p class="text-gray-600 dark:text-gray-300 max-w-xl italic text-lg">
+        Merging code with creativity to build smart solutions and stunning websites!
+    </p>
+
+      <a
+        href="Resume-Manvitha.pdf"
+        target="_blank"
+        class="inline-block bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-fuchsia-700 transition"
+      >
+        View Resume
+      </a>
+    </div>
+
+    <!-- Right: Hero Image -->
+    <div class="flex-1">
+      <img
+        src="hero.jpg"
+        alt="Manvitha"
+        class="w-full max-w-sm mx-auto rounded-2xl shadow-lg"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 px-4 md:px-10 bg-slate-100 dark:bg-slate-900 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+    
+    <!-- Left: About Image -->
+    <div class="flex-1">
+      <img
+        src="about.jpg"
+        alt="About Me"
+        class="w-full max-w-md mx-auto rounded-3xl shadow-xl"
+      />
+    </div>
+
+    <!-- Right: About Content -->
+    <div class="flex-1 text-center md:text-left">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
+        About Me
+      </h2>
+      <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-6">
+        An enthusiastic 3rd-year B.Tech student in <span class="text-fuchsia-500 font-semibold">Artificial Intelligence and Machine Learning</span>, with strong skills in AI, Machine Learning, and Web Development. Proficient in frontend technologies and completed backend development with PHP. Passionate about building AI-driven solutions and dynamic web applications that solve real-world problems.
+      </p>
+
+      <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-8">🎓 Education</h3>
+      <div class="space-y-4 text-left text-gray-700 dark:text-gray-300 text-base">
+        <div>
+          <p class="font-semibold text-fuchsia-500">Sreenidhi Institute of Science and Technology</p>
+          <p>Hyderabad, Telangana</p>
+          <p>B.Tech in AIML (2022 - Present) | CGPA: <span class="font-semibold">9.75</span></p>
+        </div>
+        <div>
+          <p class="font-semibold text-fuchsia-500">Narayana Junior College</p>
+          <p>Hyderabad, Telangana</p>
+          <p>(2020 - 2022) | Percentage: <span class="font-semibold">98%</span></p>
+        </div>
+        <div>
+          <p class="font-semibold text-fuchsia-500">Sanskriti - The School</p>
+          <p>Hyderabad, Telangana</p>
+          <p>CBSE (2010 - 2020) | Percentage: <span class="font-semibold">94%</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="py-20 px-6 bg-white dark:bg-slate-950 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto text-center">
+    <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-10">Skills</h2>
+
+    <!-- Skill Group -->
+    <div class="space-y-10">
+      
+      <!-- Programming Languages -->
+      <div>
+        <h3 class="text-2xl font-semibold text-fuchsia-500 mb-4">Programming Languages</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          <span class="px-4 py-2 bg-slate-200 dark:bg-slate-800 text-gray-900 dark:text-white rounded-full">C</span>
+          <span class="px-4 py-2 bg-slate-200 dark:bg-slate-800 text-gray-900 dark:text-white rounded-full">Java</span>
+          <span class="px-4 py-2 bg-slate-200 dark:bg-slate-800 text-gray-900 dark:text-white rounded-full">Python</span>
+        </div>
+      </div>
+
+      <!-- Web Development -->
+      <div>
+        <h3 class="text-2xl font-semibold text-fuchsia-500 mb-4">Web Development</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          <span class="px-4 py-2 bg-pink-100 dark:bg-pink-800 text-pink-700 dark:text-white rounded-full">HTML</span>
+          <span class="px-4 py-2 bg-pink-100 dark:bg-pink-800 text-pink-700 dark:text-white rounded-full">CSS</span>
+          <span class="px-4 py-2 bg-pink-100 dark:bg-pink-800 text-pink-700 dark:text-white rounded-full">JavaScript</span>
+          <span class="px-4 py-2 bg-pink-100 dark:bg-pink-800 text-pink-700 dark:text-white rounded-full">TailwindCSS</span>
+          <span class="px-4 py-2 bg-pink-100 dark:bg-pink-800 text-pink-700 dark:text-white rounded-full">Bootstrap</span>
+          <span class="px-4 py-2 bg-pink-100 dark:bg-pink-800 text-pink-700 dark:text-white rounded-full">PHP</span>
+          <span class="px-4 py-2 bg-pink-100 dark:bg-pink-800 text-pink-700 dark:text-white rounded-full">React</span>
+        </div>
+      </div>
+
+      <!-- Tools & Platforms -->
+      <div>
+        <h3 class="text-2xl font-semibold text-fuchsia-500 mb-4">Tools & Platforms</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          <span class="px-4 py-2 bg-yellow-100 dark:bg-yellow-700 text-yellow-800 dark:text-white rounded-full">Photoshop</span>
+          <span class="px-4 py-2 bg-yellow-100 dark:bg-yellow-700 text-yellow-800 dark:text-white rounded-full">Canva</span>
+        </div>
+      </div>
+
+      <!-- Machine Learning -->
+      <div>
+        <h3 class="text-2xl font-semibold text-fuchsia-500 mb-4">Machine Learning</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          <span class="px-4 py-2 bg-green-100 dark:bg-green-800 text-green-700 dark:text-white rounded-full">Supervised Learning</span>
+          <span class="px-4 py-2 bg-green-100 dark:bg-green-800 text-green-700 dark:text-white rounded-full">Unsupervised Learning</span>
+          <span class="px-4 py-2 bg-green-100 dark:bg-green-800 text-green-700 dark:text-white rounded-full">CNN</span>
+          <span class="px-4 py-2 bg-green-100 dark:bg-green-800 text-green-700 dark:text-white rounded-full">Scikit-learn</span>
+          <span class="px-4 py-2 bg-green-100 dark:bg-green-800 text-green-700 dark:text-white rounded-full">Pandas</span>
+          <span class="px-4 py-2 bg-green-100 dark:bg-green-800 text-green-700 dark:text-white rounded-full">NumPy</span>
+          <span class="px-4 py-2 bg-green-100 dark:bg-green-800 text-green-700 dark:text-white rounded-full">Matplotlib</span>
+        </div>
+      </div>
+
+      <!-- Core Competencies -->
+      <div>
+        <h3 class="text-2xl font-semibold text-fuchsia-500 mb-4">Core Competencies</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          <span class="px-4 py-2 bg-indigo-100 dark:bg-indigo-800 text-indigo-700 dark:text-white rounded-full">DSA</span>
+          <span class="px-4 py-2 bg-indigo-100 dark:bg-indigo-800 text-indigo-700 dark:text-white rounded-full">Problem Solving</span>
+        </div>
+      </div>
+
+      <!-- Soft Skills - Slate Theme -->
+<div>
+  <h3 class="text-2xl font-semibold text-fuchsia-500 mb-4">Soft Skills</h3>
+  <div class="flex flex-wrap justify-center gap-4">
+    <span class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white rounded-full">Critical Thinking</span>
+    <span class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white rounded-full">Communication</span>
+    <span class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white rounded-full">Time Management</span>
+    <span class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white rounded-full">Adaptability</span>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-16 bg-white dark:bg-gray-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">Projects</h2>
+
+    <!-- ML Projects -->
+    <h3 class="text-2xl font-semibold text-fuchsia-500 mb-6">Machine Learning Projects</h3>
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+
+      <!-- Project Card -->
+      <div class="bg-gray-100 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition duration-300 p-6 transform hover:-translate-y-1">
+        <h4 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">🎵 Music Genre Classification</h4>
+        <p class="text-gray-600 dark:text-gray-300">A deep learning model trained on the GTZAN dataset to classify music into 10 genres. Integrated with a visually styled Streamlit app featuring gradient themes and GIFs for better UX. Focused on audio feature extraction and accurate prediction through convolutional layers.</p>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">Python</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">CNN</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">Streamlit</span>
+        </div>
+        <div class="mt-4 flex gap-4">
+          <a href="https://spectrosync-1.onrender.com" class="text-white bg-fuchsia-600 hover:bg-fuchsia-700 transition px-4 py-2 rounded-lg">Live Demo</a>
+          <a href="https://github.com/ManvithaPola/SpectroSync" class="text-fuchsia-600 border border-fuchsia-600 hover:bg-fuchsia-100 dark:hover:bg-fuchsia-900 transition px-4 py-2 rounded-lg">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Project Card -->
+      <div class="bg-gray-100 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition duration-300 p-6 transform hover:-translate-y-1">
+        <h4 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">🎬 Movie Recommendation System</h4>
+        <p class="text-gray-600 dark:text-gray-300">Built a content-based movie recommender using metadata like genre, cast, and keywords. Utilized NLTK for text processing and cosine similarity to generate personalized suggestions.</p>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">Python</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">NLTK</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">Pandas</span>
+        </div>
+        <div class="mt-4 flex gap-4">
+          <a href="https://movie-recommender-system-sv6m.onrender.com/" class="text-white bg-fuchsia-600 hover:bg-fuchsia-700 transition px-4 py-2 rounded-lg">Live Demo</a>
+          <a href="https://github.com/ManvithaPola/Movie-Recommender-System" class="text-fuchsia-600 border border-fuchsia-600 hover:bg-fuchsia-100 dark:hover:bg-fuchsia-900 transition px-4 py-2 rounded-lg">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Project Card -->
+      <div class="bg-gray-100 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition duration-300 p-6 transform hover:-translate-y-1">
+        <h4 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">📧 Spam Mail Detection</h4>
+        <p class="text-gray-600 dark:text-gray-300">Developed a machine learning model to classify emails as spam or not. Used NLTK for text preprocessing and scikit-learn algorithms like Naive Bayes for accurate prediction.</p>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">Python</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">NLTK</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">scikit-learn</span>
+        </div>
+        <div class="mt-4 flex gap-4">
+          <a href="https://spam-mail-detection-manvitha.onrender.com" class="text-white bg-fuchsia-600 hover:bg-fuchsia-700 transition px-4 py-2 rounded-lg">Live Demo</a>
+          <a href="https://github.com/ManvithaPola/Spam-Mail-Detection" class="text-fuchsia-600 border border-fuchsia-600 hover:bg-fuchsia-100 dark:hover:bg-fuchsia-900 transition px-4 py-2 rounded-lg">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Projects -->
+    <h3 class="text-2xl font-semibold text-fuchsia-500 mb-6">Web Development Projects</h3>
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Project Card -->
+      <div class="bg-gray-100 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition duration-300 p-6 transform hover:-translate-y-1">
+        <h4 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">💸 RoomieSplit – Smart Expense Splitter for Roommates</h4>
+        <p class="text-gray-600 dark:text-gray-300">A web application that simplifies shared expense management among roommates. Users can add, edit, and delete expenses, categorize them (e.g., rent, food, internet), view balances, settle up payments, and visualize spending through charts. Includes features like CSV/PDF export, filter by category/month, and individual debt settlement.</p>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">PHP</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">HTML</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">CSS</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">Javascript</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">MySQL</span>
+        </div>
+        <div class="mt-4 flex gap-4">
+          <a href="http://manvitha.infinityfreeapp.com/index.php" class="text-white bg-fuchsia-600 hover:bg-fuchsia-700 transition px-4 py-2 rounded-lg">Live Demo</a>
+          <a href="https://github.com/ManvithaPola/Roomiesplit" class="text-fuchsia-600 border border-fuchsia-600 hover:bg-fuchsia-100 dark:hover:bg-fuchsia-900 transition px-4 py-2 rounded-lg">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Project Card -->
+      <div class="bg-gray-100 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition duration-300 p-6 transform hover:-translate-y-1">
+        <h4 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">👗 Velisca – Premium Fashion & Lifestyle Website</h4>
+        <p class="text-gray-600 dark:text-gray-300">Velisca is a luxury fashion e-commerce site inspired by top brands. It features category-wise product pages, filters by category and price, wishlist/cart options, and a stylish, high-end UI using a custom color palette. Backend integration handles dynamic product display and data management.</p>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">HTML</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">CSS</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">JavaScript</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">TailwindCSS</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">PHP</span>
+        </div>
+        <div class="mt-4 flex gap-4">
+          <a href="http://manvitha.free.nf/" class="text-white bg-fuchsia-600 hover:bg-fuchsia-700 transition px-4 py-2 rounded-lg">Live Demo</a>
+          <a href="https://github.com/ManvithaPola/velisca" class="text-fuchsia-600 border border-fuchsia-600 hover:bg-fuchsia-100 dark:hover:bg-fuchsia-900 transition px-4 py-2 rounded-lg">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Project Card -->
+      <div class="bg-gray-100 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition duration-300 p-6 transform hover:-translate-y-1">
+        <h4 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">📚 Literary Escape – Bookstore Management System</h4>
+        <p class="text-gray-600 dark:text-gray-300">A visually appealing online bookstore with CRUD functionality to add, display, and manage books. Includes features like tracking sales and purchase history. Designed with a warm gradient UI and an intuitive navigation bar for seamless user experience.</p>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">HTML</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">CSS</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">JavaScript</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">TailwindCSS</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">PHP</span>
+        </div>
+        <div class="mt-4 flex gap-4">
+          <a href="http://manvitha.kesug.com/" class="text-white bg-fuchsia-600 hover:bg-fuchsia-700 transition px-4 py-2 rounded-lg">Live Demo</a>
+          <a href="https://github.com/ManvithaPola/Literary-Escape" class="text-fuchsia-600 border border-fuchsia-600 hover:bg-fuchsia-100 dark:hover:bg-fuchsia-900 transition px-4 py-2 rounded-lg">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Project Card -->
+      <div class="bg-gray-100 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition duration-300 p-6 transform hover:-translate-y-1">
+        <h4 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">🌍 Univista – Study Abroad Consultancy Website</h4>
+        <p class="text-gray-600 dark:text-gray-300">A consultancy platform guiding students in studying abroad, featuring university info, courses, scholarships, and application tips. Includes a clean UI, testimonials, blogs, FAQs, and personalized guidance for a smooth overseas education journey.</p>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">React</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">CSS</span>
+          <span class="bg-fuchsia-100 text-fuchsia-700 px-3 py-1 rounded-full text-sm">JavaScript</span>
+        </div>
+        <div class="mt-4 flex gap-4">
+          <a href="https://consultancy-manvitha.netlify.app/" class="text-white bg-fuchsia-600 hover:bg-fuchsia-700 transition px-4 py-2 rounded-lg">Live Demo</a>
+          <a href="https://github.com/ManvithaPola/Consultancy" class="text-fuchsia-600 border border-fuchsia-600 hover:bg-fuchsia-100 dark:hover:bg-fuchsia-900 transition px-4 py-2 rounded-lg">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Internship Section -->
+<section id="internship" class="py-16 bg-white dark:bg-gray-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">Internships</h2>
+
+    <div class="bg-gray-100 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition duration-300 p-6 md:p-8 transform hover:-translate-y-1">
+      <h3 class="text-2xl font-semibold text-fuchsia-500 mb-2">Intel® Unnati Industrial Training – 2024</h3>
+      <p class="text-gray-700 dark:text-gray-300 text-lg mb-2">
+        <strong class="text-gray-800 dark:text-white">Duration:</strong> May 2024 – July 2024
+      </p>
+      <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-4">
+        Developed <span class="text-fuchsia-500 font-medium">MediAI</span>, an AI-driven healthcare web application as part of the Intel® Unnati Industrial Training program. The project was completed under the theme <em>“Integrated Common Services to Common People”</em>, with mentorship and industry-focused training.
+      </p>
+      <ul class="list-disc pl-5 text-gray-700 dark:text-gray-300 text-lg mb-4 space-y-2">
+        <li>Built using <strong>Flask/Django, HTML/CSS, PHP, and MySQL</strong>.</li>
+        <li>Integrated features like <strong>symptom prediction, health analytics dashboards, and an AI-powered chatbot</strong>.</li>
+        <li>Focused on accessibility, user-friendly design, and real-time medical support tools.</li>
+      </ul>
+      <a href="https://github.com/positiveonly/healthcare.git" target="_blank" class="inline-block mt-4 text-white bg-fuchsia-600 hover:bg-fuchsia-700 transition px-5 py-2 rounded-lg shadow-md">
+        🔗 View MediAI on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Certifications Section -->
+<section id="certifications" class="py-16 bg-gray-50 dark:bg-gray-900">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-10">Certifications</h2>
+    <div class="flex flex-col space-y-4 items-center">
+      <a
+        href="AIML-aws.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full max-w-md text-center cursor-pointer px-6 py-3 rounded-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold transition duration-300"
+      >
+        AI-ML Virtual Internship (AICTE-AWS)
+      </a>
+      <a
+        href="AIML-google.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full max-w-md text-center cursor-pointer px-6 py-3 rounded-full bg-violet-600 hover:bg-violet-700 text-white font-semibold transition duration-300"
+      >
+        AI-ML Virtual Internship (AICTE-GOOGLE)
+      </a>
+      <a
+        href="Gen ai.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full max-w-md text-center cursor-pointer px-6 py-3 rounded-full bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-semibold transition duration-300"
+      >
+        Generative AI Virtual Internship (AICTE-GOOGLE)
+      </a>
+      <a
+        href="AIML-google.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full max-w-md text-center cursor-pointer px-6 py-3 rounded-full bg-violet-600 hover:bg-violet-700 text-white font-semibold transition duration-300"
+      >
+        Data Engineering Virtual Internship (AICTE-AWS)
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="publications" class="py-16 bg-white dark:bg-gray-900">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-4xl font-bold text-center text-dark-600 mb-8">Publications</h2>
+
+    <!-- Publication -->
+    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow-md mb-6 transition-transform hover:scale-[1.02]">
+      <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+        "Data to Watts – Navigating the Energy Revolution with AI"
+      </h3>
+      <p class="text-gray-600 dark:text-gray-300 mb-2">
+        <span class="font-medium text-fuchsia-500">Book:</span> Integrating Artificial Intelligence Into the Energy Sector  
+        <br>
+        <span class="font-medium text-fuchsia-500">Publisher:</span> IGI Global Publications  
+        <br>
+        <span class="font-medium text-fuchsia-500">DOI:</span> 
+        <a href="https://doi.org/10.4018/979-8-3693-7112-1.ch003" target="_blank" class="text-blue-600 hover:underline">
+          https://doi.org/10.4018/979-8-3693-7112-1.ch003
+        </a>
+      </p>
+      <p class="text-gray-700 dark:text-gray-300">
+        Co-authored a chapter that explores the role of artificial intelligence in revolutionizing energy systems. The work focuses on smart grid optimization, predictive analytics, and sustainable energy management through intelligent data-driven technologies.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- Contact Section with Explicit Email -->
+<section id="contact" class="py-16 bg-gray-50 dark:bg-gray-900 flex flex-col items-center px-4 max-w-4xl mx-auto">
+  <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Get In Touch</h2>
+  <p class="text-center text-gray-600 dark:text-gray-300 mb-10 max-w-xl">
+    Feel free to reach out to me via any of the platforms below. I’m always open to connecting, collaborating, and discussing new opportunities.
+  </p>
+
+  <div class="flex flex-col gap-6 items-center">
+    
+    <!-- Email -->
+    <div class="flex items-center space-x-3">
+      <i class="fas fa-envelope text-2xl text-gray-600 dark:text-gray-300"></i>
+      <a href="mailto:polamanvitha@gmail.com" class="text-lg text-gray-700 dark:text-gray-300 hover:text-fuchsia-600 dark:hover:text-fuchsia-500 transition duration-300">
+        polamanvitha@gmail.com
+      </a>
+    </div>
+
+    <!-- GitHub -->
+    <a href="https://github.com/ManvithaPola" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 hover:text-fuchsia-600 dark:hover:text-fuchsia-500 transition duration-300 text-gray-700 dark:text-gray-300">
+      <svg role="img" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+        <title>GitHub</title>
+        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.71c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1.01.07 1.54 1.03 1.54 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02.86.21 1.73.32 2.54.32.86 0 1.73-.11 2.54-.32 1.9-1.29 2.75-1.02 2.75-1.02.56 1.38.21 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.86v2.1c0 .26.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/>
+      </svg>
+      <span class="text-lg">GitHub</span>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/manvithapola/" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 hover:text-fuchsia-600 dark:hover:text-fuchsia-500 transition duration-300 text-gray-700 dark:text-gray-300">
+      <svg role="img" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+        <title>LinkedIn</title>
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.039-1.852-3.039-1.852 0-2.136 1.445-2.136 2.939v5.669H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.451v6.29zM5.337 7.433a2.07 2.07 0 11-.002-4.141 2.07 2.07 0 01.002 4.141zm1.777 13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .77 0 1.722v20.555C0 23.23.792 24 1.771 24h20.451C23.208 24 24 23.23 24 22.277V1.722C24 .77 23.208 0 22.225 0z"/>
+      </svg>
+      <span class="text-lg">LinkedIn</span>
+    </a>
+
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 py-6 mt-16">
+  <div class="max-w-7xl mx-auto px-4 flex justify-center items-center">
+    <p class="text-sm text-center">
+      © 2025 Manvitha Pola. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+
+
+    <script>
+      const toggleBtn = document.getElementById('theme-toggle');
+      toggleBtn.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+      });
+    </script>
+  </body>
+</html>
